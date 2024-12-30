@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { AuthContextProvider } from '@/context/AuthContext';
 
 export const metadata: Metadata = {
   title: 'eth-dapp-starter',
@@ -13,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased`}>{children}</body>
+      <AuthContextProvider>
+        <body className={`antialiased`}>{children}</body>
+      </AuthContextProvider>
     </html>
   );
 }
