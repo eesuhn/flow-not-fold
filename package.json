@@ -1,5 +1,5 @@
 {
-  "name": "eth-dapp-starter",
+  "name": "flow-not-fold",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -30,6 +30,7 @@
     "typechain": "^8.3.2"
   },
   "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
     "husky": "^9.1.7",
     "prettier": "3.4.2",
     "prettier-plugin-solidity": "^1.4.1",

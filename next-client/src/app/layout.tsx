@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { UserAuthContextProvider } from '@/context/UserAuthContext';
+import { OKXAuthContextProvider } from '@/context/OKXAuthContext';
 
 export const metadata: Metadata = {
   title: 'eth-dapp-starter',
@@ -12,8 +14,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`antialiased`}>{children}</body>
+    // Surpress hydration warning
+    <html lang="en" suppressHydrationWarning>
+      <head />
+      <body className="min-h-screen">
+        <OKXAuthContextProvider>
+          <UserAuthContextProvider>
+            <main className="antialiased">{children}</main>
+          </UserAuthContextProvider>
+        </OKXAuthContextProvider>
+      </body>
     </html>
   );
 }

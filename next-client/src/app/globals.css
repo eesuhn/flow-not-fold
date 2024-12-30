@@ -70,3 +70,52 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* WalletConnection.tsx */
+.page-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom right, #10b981, #047857);
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  width: 100%;
+  max-width: 24rem;
+}
+
+.card-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  color: black;
+}
+
+.card-subtitle {
+  color: #4b5563;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.button {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s ease-in-out;
+  color: #ffffff;
+}
+
+.button-connect {
+  background-color: #10b981;
+}
+
+.button-disconnect {
+  background-color: #6b7280;
+}
