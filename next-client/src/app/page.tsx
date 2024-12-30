@@ -1,7 +1,7 @@
-import DisplayUser from '@/components/DisplayUser';
-// import Starter from '@/components/Starter';
+// import DisplayUser from '@/components/DisplayUser';
+import WalletConnection from '@/components/WalletConnection';
 
 export default function Home() {
-  // return <Starter />;
-  return <DisplayUser />;
+  // return <DisplayUser />;
+  return <WalletConnection />;
 }
