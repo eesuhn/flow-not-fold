@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { OKXUniversalConnectUI, THEME } from '@okxconnect/ui';
-import { ethers } from 'ethers';
+import { ethers, providers } from 'ethers';
 
 const contractAddress = '0xd891c181de0cA74C49D0fd5A544f56bE18cf707A'; // Replace with your actual contract address
 const contractAbi = [
@@ -173,8 +173,17 @@ export default function Home() {
 
   // Encode playGame function
   const encodePlayGameData = (gameId: number) => {
-    const provider = new ethers.JsonRpcProvider('https://testnet.evm.nodes.onflow.org/');
-    const contract = new ethers.Contract(contractAddress, contractAbi, provider);
+    const provider = new providers.JsonRpcProvider(
+      'https://testnet.evm.nodes.onflow.org/'
+    );
+    provider.getBlockNumber()
+  .then(console.log)
+  .catch(console.error);
+    const contract = new ethers.Contract(
+      contractAddress,
+      contractAbi,
+      provider
+    );
     return contract.interface.encodeFunctionData('playGame', [gameId]);
   };
 
@@ -185,7 +194,8 @@ export default function Home() {
       return;
     }
 
-    const encodedData = '0x5873533d0000000000000000000000000000000000000000000000000000000000000006';
+    const encodedData =
+      '0x5873533d0000000000000000000000000000000000000000000000000000000000000006';
 
     const data = {
       method: 'eth_sendTransaction',
