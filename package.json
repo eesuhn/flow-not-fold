@@ -1,0 +1,38 @@
+{
+  "name": "eth-dapp-starter",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "postinstall": "bun install --cwd next-client",
+    "add:client": "bun add --cwd next-client",
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "local": "hardhat node",
+    "deploy": "hardhat run scripts/deploy.ts --network chain",
+    "deploy:local": "hardhat run scripts/deploy.ts --network localhost",
+    "dev": "bun run --cwd next-client dev",
+    "build": "bun run --cwd next-client build",
+    "start": "bun run --cwd next-client start",
+    "ngrok": "bun run --cwd next-client ngrok",
+    "lint": "bun run --cwd next-client lint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "@nomicfoundation/hardhat-ethers": "^3.0.8",
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@typechain/ethers-v6": "^0.5.1",
+    "@typechain/hardhat": "^9.1.0",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.13.4",
+    "hardhat": "^2.22.15",
+    "typechain": "^8.3.2"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "prettier": "3.4.2",
+    "prettier-plugin-solidity": "^1.4.1",
+    "prettier-plugin-tailwindcss": "^0.6.9"
+  }
+}

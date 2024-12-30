@@ -1,0 +1,6 @@
+echo "\033[0;33mRunning pre-commit checks...\033[0m"
+
+bun run format || { echo "❌ Formatting failed! Please run 'bun run format' and try again."; exit 1; }
+bun run lint || { echo "❌ Linting failed! Please fix the issues and try again."; exit 1; }
+
+echo "✅ All checks passed!"

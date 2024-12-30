@@ -1,0 +1,14 @@
+build
+dist
+.next
+node_modules
+target
+
+.env
+/cache
+/artifacts
+/typechain
+/typechain-types
+/coverage
+/coverage.json
+ignition/deployments/chain-31337
