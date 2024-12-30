@@ -176,9 +176,7 @@ export default function Home() {
     const provider = new providers.JsonRpcProvider(
       'https://testnet.evm.nodes.onflow.org/'
     );
-    provider.getBlockNumber()
-  .then(console.log)
-  .catch(console.error);
+    provider.getBlockNumber().then(console.log).catch(console.error);
     const contract = new ethers.Contract(
       contractAddress,
       contractAbi,
