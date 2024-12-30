@@ -3,14 +3,14 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import WebApp from '@twa-dev/sdk';
 
-type AuthContextType = {
+type UserAuthContextType = {
   userID: number | null;
   username: string | null;
   windowHeight: number;
   isDataValid: boolean;
 };
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+const AuthContext = createContext<UserAuthContextType | undefined>(undefined);
 
 const validateInitData = async (
   initData: string,
@@ -76,7 +76,7 @@ const validateInitData = async (
   }
 };
 
-export const AuthContextProvider = ({
+export const UserAuthContextProvider = ({
   children,
 }: {
   children: React.ReactNode;
@@ -128,7 +128,7 @@ export const AuthContextProvider = ({
   );
 };
 
-export const useAuth = () => {
+export const useUserAuth = () => {
   const context = useContext(AuthContext);
   if (context === undefined) {
     throw new Error('useAuth must be used within an AuthContextProvider');

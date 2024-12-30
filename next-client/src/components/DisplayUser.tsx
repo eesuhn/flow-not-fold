@@ -1,9 +1,9 @@
 'use client';
 
-import { useAuth } from '@/context/AuthContext';
+import { useUserAuth } from '@/context/UserAuthContext';
 
 export default function DisplayUser() {
-  const { userID, username, windowHeight, isDataValid } = useAuth();
+  const { userID, username, windowHeight, isDataValid } = useUserAuth();
 
   if (!isDataValid) {
     // Display a message if validation failed
