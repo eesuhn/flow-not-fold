@@ -122,16 +122,18 @@ export default function Home() {
   const [walletAddress, setWalletAddress] = useState<string>('');
   const [gameId, setGameId] = useState<number>(1); // Replace with the gameId you want to play
 
+  // Initialize OKX Connect UI on load
   useEffect(() => {
     const initOKX = async () => {
-      const ui = await OKXUniversalConnectUI.init({
+      const session = await OKXUniversalConnectUI.init({
         dappMetaData: {
           icon: 'https://static.okx.com/cdn/assets/imgs/247/58E63FEA47A2B7D7.png',
-          name: 'Poker Game',
+          name: 'OKX Connect Demo',
         },
         actionsConfiguration: {
-          returnStrategy: 'none',
+          returnStrategy: 'tg://resolve',
           modals: 'all',
+          tmaReturnUrl: 'back',
         },
         language: 'en_US',
         uiPreferences: {
@@ -139,72 +141,90 @@ export default function Home() {
         },
       });
 
-      setUniversalUi(ui);
+      setUniversalUi(session);
     };
 
     initOKX();
   }, []);
 
+  // Connect Wallet function
   const connectWallet = async () => {
+    if (!universalUi) return;
+
     const session = await universalUi.openModal({
       namespaces: {
         eip155: {
-          chains: ['eip155:545'], // Flow EVM Testnet Chain ID
-          defaultChain: '545', // Flow EVM Testnet default chain ID
+          chains: ['eip155:545'], // Chain ID for Flow EVM Testnet
+          defaultChain: '545',
         },
       },
       optionalNamespaces: {
         eip155: {
-          chains: ['eip155:545'], // Flow EVM Testnet Chain ID (optional for custom networks)
+          chains: ['eip155:545'], // Optional for custom networks
         },
       },
     });
 
-    setWalletAddress(session?.namespaces?.eip155?.accounts[0] ?? '');
-    setConnected(true);
+    if (session?.namespaces?.eip155?.accounts?.[0]) {
+      setWalletAddress(session?.namespaces?.eip155?.accounts[0]);
+      setConnected(true);
+    }
   };
 
+  // Encode playGame function
   const encodePlayGameData = (gameId: number) => {
-    const provider = new ethers.JsonRpcProvider(
-      'https://testnet.evm.nodes.onflow.org/'
-    ); // Replace with your provider
-    const contract = new ethers.Contract(
-      contractAddress,
-      contractAbi,
-      provider
-    );
+    const provider = new ethers.JsonRpcProvider('https://testnet.evm.nodes.onflow.org/');
+    const contract = new ethers.Contract(contractAddress, contractAbi, provider);
     return contract.interface.encodeFunctionData('playGame', [gameId]);
   };
 
+  // Play Game function
   const playGame = async () => {
     if (!connected || !walletAddress) {
       alert('Please connect your wallet first.');
       return;
     }
 
-    const encodedData = encodePlayGameData(gameId);
+    const encodedData = '0x5873533d0000000000000000000000000000000000000000000000000000000000000006';
 
-    // const weiFee = ethers.parseEther('1.0'); // Assuming 1 ETH as the fee, adjust if needed
-    console.log(encodedData);
     const data = {
       method: 'eth_sendTransaction',
       params: [
         {
-          from: walletAddress.split(':')[2],
+          from: walletAddress.split(':')[2], // Extract address from session
           to: contractAddress,
-          value: 1000000000000000000, // Amount in Wei
+          value: ethers.utils.parseEther('1.0').toString(), // Example value in Wei
           data: encodedData,
         },
       ],
     };
-
-    console.log(data);
 
     try {
       const result = await universalUi.request(data, 'eip155:545', 'all');
       console.log('Transaction Result:', result);
     } catch (error) {
       console.error('Error sending transaction:', error);
+    }
+  };
+
+  // Fetch Random Number from contract (for example)
+  const fetchRandomNumber = async () => {
+    try {
+      const result = await universalUi.request(
+        {
+          method: 'eth_call',
+          params: [
+            {
+              to: contractAddress,
+              data: '0x0c949043', // Example method signature for fetching data
+            },
+          ],
+        },
+        'eip155:545'
+      );
+      console.log(ethers.BigNumber.from(result).toNumber());
+    } catch (error) {
+      console.error('Error fetching random number:', error);
     }
   };
 
@@ -219,6 +239,7 @@ export default function Home() {
         <div>
           <p>Connected as: {walletAddress}</p>
           <button onClick={playGame}>Play Game</button>
+          <button onClick={fetchRandomNumber}>RNG</button>
         </div>
       )}
 
