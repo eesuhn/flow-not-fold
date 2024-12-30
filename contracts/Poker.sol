@@ -13,7 +13,8 @@ contract Poker {
     }
     mapping(uint256 => Game) public games;
 
-    function playGame(uint256 gameId) external payable { // Function to join a game
+    function playGame(uint256 gameId) external payable {
+        // Function to join a game
         require(!games[gameId].gameActive, "Game is active");
         if (games[gameId].player1 == address(0)) {
             require(msg.value >= MIN_ENTRY_FEE, "Minimum bet: 1 $FLOW");
@@ -24,8 +25,7 @@ contract Poker {
                 winningsWithdrawn: false,
                 pool: msg.value
             });
-        }
-        else if (games[gameId].player2 == address(0)) {
+        } else if (games[gameId].player2 == address(0)) {
             Game storage game = games[gameId];
             require(msg.value >= MIN_ENTRY_FEE, "Minimum bet: 1 $FLOW");
             require(msg.sender != game.player1, "Already joined as player 1");
@@ -34,11 +34,15 @@ contract Poker {
             game.gameActive = true;
         }
     }
-    
-    function withdraw(uint256 gameId) external { // Withdraw winner's winnings based on game ID
+
+    function withdraw(uint256 gameId) external {
+        // Withdraw winner's winnings based on game ID
         Game storage game = games[gameId];
         require(game.gameActive, "Game is not active");
-        require(msg.sender == game.player1 || msg.sender == game.player2, "Only players can request for withdrawal");
+        require(
+            msg.sender == game.player1 || msg.sender == game.player2,
+            "Only players can request for withdrawal"
+        );
         require(!game.winningsWithdrawn, "Winnings already withdrawn");
         game.winningsWithdrawn = true;
         game.gameActive = false;
@@ -48,5 +52,7 @@ contract Poker {
     }
 
     // Fallback function to prevent accidental $FLOW transfers
-    receive() external payable { revert("Direct deposits not allowed"); }
+    receive() external payable {
+        revert("Direct deposits not allowed");
+    }
 }
