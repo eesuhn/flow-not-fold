@@ -66,8 +66,8 @@ const validateInitData = async (
       .map((b) => b.toString(16).padStart(2, '0'))
       .join('');
 
-    console.log('Calculated hash:', calculatedHash);
-    console.log('Received hash:', hash);
+    // console.log('Calculated hash:', calculatedHash);
+    // console.log('Received hash:', hash);
 
     return hash === calculatedHash;
   } catch (error) {
@@ -96,10 +96,10 @@ export const UserAuthContextProvider = ({
         try {
           // Important: Use the bot token, not the bot ID
           const botToken = process.env.NEXT_PUBLIC_BOT_TOKEN || '';
-          console.log('Init Data:', WebApp.initData);
+          // console.log('Init Data:', WebApp.initData);
 
           const isValid = await validateInitData(WebApp.initData, botToken);
-          console.log('Validation result:', isValid);
+          // console.log('Validation result:', isValid);
 
           setIsDataValid(isValid);
 
