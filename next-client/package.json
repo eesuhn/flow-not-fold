@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@okxconnect/ui": "^1.6.3",
+    "@supabase/ssr": "^0.5.2",
+    "@supabase/supabase-js": "^2.47.10",
     "@telegram-apps/init-data-node": "^1.2.2",
     "@twa-dev/sdk": "^8.0.1",
     "class-variance-authority": "^0.7.0",
