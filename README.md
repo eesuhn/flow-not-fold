@@ -1,78 +1,76 @@
-## `eth-dapp-starter`
+# Flow Not Fold
 
-![nextjs][nextjs] ![hardhat][hardhat] ![ethers][ethers] ![shadcn][shadcn] ![bun][bun]
+"Flow Not Fold" is a decentralized 1v1 poker application built on the **Flow blockchain**. It leverages Flow's high throughput, low-cost transactions, and native support for randomness via **Verifiable Random Function (VRF)** to ensure fair and transparent gameplay. Designed for seamless user experience, the app combines modern web technologies like **Next.js** and **Bun** with the power of Flow's smart contract ecosystem.
+
+## Key Features 🎮
+
+- **1v1 Poker Game**: Play against another player in real-time with provably fair randomness.
+- **Flow Blockchain Integration**: Immutable and transparent transaction records with low gas fees.
+- **Verifiable Randomness**: Guaranteed unbiased game outcomes using Flow's VRF.
+- **Modern Web Framework**: Built with Next.js for a smooth and responsive user interface.
+- **Bun-Powered Development**: Ultra-fast dependency installation, bundling, and runtime.
+
+## Getting Started 🚀
 
 > [!WARNING]
-> This `README` is not the latest version.
+> Install **Bun** before proceeding:
+>
+> ```bash
+> curl -fsSL https://bun.sh/install | bash
+> ```
 
-### Getting Started 🚀
+### Steps to Start the Project
 
-> [!IMPORTANT]
-> Install `Bun` before proceeding. <br> `curl -fsSL https://bun.sh/install | bash`
+1. **Install Dependencies**
 
-1. `bun install` to install all necessary dependencies.
+   ```bash
+   bun install
+   ```
 
-2. Start the development server for `Next.js`:
+2. **Start the Development Server**
 
    ```bash
    bun run dev
    ```
 
-3. In a new terminal, compile and test the smart contracts:
+3. **Run Flow Emulator and Deploy Contracts**
+
+   ```bash
+   bun run local
+   bun run deploy:local
+   ```
+
+4. **Test Functionality**
    ```bash
    bun run test
    ```
 
-### Structure 🌴
+## Project Structure 🌴
 
-```bash
+```
 .
-├── contracts                    # Solidity smart contracts
-│   └── SampleContract.sol
+├── contracts                      # Cadence smart contracts
+│   └── PokerContract.cdc          # Main game logic
 ├── next-client
 │   ├── public                     # Public assets
-│   └── src                        # Next.js source
+│   └── src                        # Frontend source (Next.js)
 ├── scripts
-│   └── contracts.ts               # List of contracts to deploy
-└── test                         # Contract tests using Hardhat
-    └── SampleContractTest.ts
+│   └── deploy.ts                  # Script for deploying contracts
+└── test                           # Tests for contracts and application
+    └── PokerContractTest.ts       # End-to-end testing
 ```
 
-### Deployment 🌐
+## Deployment 🌐
 
-1. Make a copy of `.env.example` and rename it to `.env`.
+### Environment Setup
 
-2. Fill in the necessary environment variables.
+1. Create a `.env` file by copying `.env.example`
+2. Populate the environment variables as required
+3. For local development, not all fields are necessary
 
-   > For local deployment, not all fields are required.
+## Technologies Used 💡
 
-3. Specify the contracts to deploy in `scripts/contracts.ts`.
-
-> [!WARNING]
-> Ensure your `.env` file is configured correctly. Do not commit sensitive information.
-
-#### Deploying to Testnet
-
-1. `bun run deploy` to deploy on testnet.
-
-#### Deploying Locally
-
-1. Start a local node with `bun run local`.
-
-2. `bun run deploy:local` to deploy locally.
-
-### Additional Resources 📃
-
-- [Bun Documentation](https://bun.sh/docs)
-- [Hardhat Documentation](https://hardhat.org/getting-started/)
-
-[![Buy Me A Coffee][coffee]](https://buymeacoffee.com/eesuhn)
-
-<!-- Badges -->
-
-[nextjs]: https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white
-[hardhat]: https://img.shields.io/badge/Hardhat-f0d614?style=for-the-badge&logo=hardhat&logoColor=white
-[ethers]: https://img.shields.io/badge/ethers.js-6651FF?style=for-the-badge&logo=ethereum&logoColor=white
-[shadcn]: https://img.shields.io/badge/shadcn/ui-000000?style=for-the-badge&logo=shadcn/ui&logoColor=white
-[bun]: https://img.shields.io/badge/Bun-000?logo=bun&logoColor=fff&style=for-the-badge
-[coffee]: https://img.shields.io/badge/Buy%20Me%20A%20Coffee-FF813F?style=for-the-badge&logo=buy-me-a-coffee&logoColor=white
+- **Flow Blockchain**: High-performance blockchain designed for games and dApps
+- **Next.js**: React framework for building scalable web applications
+- **Bun**: Lightning-fast JavaScript runtime and bundler
+- **Cadence**: Secure and resource-oriented smart contract language for Flow
