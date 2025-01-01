@@ -1,14 +1,14 @@
-# Flow Not Fold
+# Flow not Fold!
 
-"Flow Not Fold" is a decentralized 1v1 poker application built on the **Flow blockchain**. It leverages Flow's high throughput, low-cost transactions, and native support for randomness via **Verifiable Random Function (VRF)** to ensure fair and transparent gameplay. Designed for seamless user experience, the app combines modern web technologies like **Next.js** and **Bun** with the power of Flow's smart contract ecosystem.
+![nextjs][nextjs] ![hardhat][hardhat] ![ethers][ethers] ![shadcn][shadcn] ![bun][bun]
+
+"Flow Not Fold" is a decentralized 1v1 poker application built on the **Flow blockchain**. It leverages Flow's high throughput, low-cost transactions, and native support for randomness via **Verifiable Random Function (VRF)** to ensure fair and transparent gameplay.
 
 ## Key Features 🎮
 
 - **1v1 Poker Game**: Play against another player in real-time with provably fair randomness.
 - **Flow Blockchain Integration**: Immutable and transparent transaction records with low gas fees.
 - **Verifiable Randomness**: Guaranteed unbiased game outcomes using Flow's VRF.
-- **Modern Web Framework**: Built with Next.js for a smooth and responsive user interface.
-- **Bun-Powered Development**: Ultra-fast dependency installation, bundling, and runtime.
 
 ## Getting Started 🚀
 
@@ -60,17 +60,8 @@
     └── PokerContractTest.ts       # End-to-end testing
 ```
 
-## Deployment 🌐
-
-### Environment Setup
-
-1. Create a `.env` file by copying `.env.example`
-2. Populate the environment variables as required
-3. For local development, not all fields are necessary
-
-## Technologies Used 💡
-
-- **Flow Blockchain**: High-performance blockchain designed for games and dApps
-- **Next.js**: React framework for building scalable web applications
-- **Bun**: Lightning-fast JavaScript runtime and bundler
-- **Cadence**: Secure and resource-oriented smart contract language for Flow
+[nextjs]: https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white
+[hardhat]: https://img.shields.io/badge/Hardhat-f0d614?style=for-the-badge&logo=hardhat&logoColor=white
+[ethers]: https://img.shields.io/badge/ethers.js-6651FF?style=for-the-badge&logo=ethereum&logoColor=white
+[shadcn]: https://img.shields.io/badge/shadcn/ui-000000?style=for-the-badge&logo=shadcn/ui&logoColor=white
+[bun]: https://img.shields.io/badge/Bun-000?logo=bun&logoColor=fff&style=for-the-badge
